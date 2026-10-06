@@ -6,17 +6,17 @@ class ListNode:
 def hasCycle(head: ListNode) -> bool:
     if not head or not head.next:
         return False
-    cicle=False
-    despues=head.next
-    primer=head
-    while cicle==False:
-        if despues != primer:
-            despues=despues.next
-            primer=primer.next.next
-            if not despues or not despues.next:
-                cicle=True
-                return False
-        else:
-            cicle=True
+    
+    primer = head             
+    despues = head.next       
+  
+    while primer is not despues:
+        
+        if not despues or not despues.next:
+            return False
+        
+        primer = primer.next
+        despues = despues.next.next
+        
     return True
 
