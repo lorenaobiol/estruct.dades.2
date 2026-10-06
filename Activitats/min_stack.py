@@ -16,8 +16,5 @@ class MinStack:
 
     def getMin(self) -> int:
         if self.pila:
-            min=self.pila[0]
-            for n in self.pila:
-                if min>n:
-                    min=n
-            return min
+            ordenada=sorted(self.pila)
+            return ordenada[0]
