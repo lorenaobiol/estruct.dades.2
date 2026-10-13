@@ -21,7 +21,7 @@ class MyHashMap:
 
     def get(self, key: int) -> int:
         j = self._hash_function(key)
-        self._bucket_get(j, key)
+        return self._bucket_get(j, key)
 
     def remove(self, key: int) -> None:
         j = self._hash_function(key)
