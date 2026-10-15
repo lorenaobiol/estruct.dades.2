@@ -19,11 +19,11 @@ class MyHashMap:
         return key % len(self._table)          # h(x) = x % m
 
     def put(self, key: int, value: int) -> None:
-        j = self._hash_function(key)
         pos=self.__find(key)
         if pos is not None:
             self._table[pos][1]=value
         else:
+            j = self._hash_function(key)
             inici=j
             while self._table [j][2] != LLIURE and self._table [j][2] != ESBORRAT:
                 j=(j+1)%len(self._table)
@@ -55,11 +55,11 @@ class MyHashMap:
 
     def _resize(self, c: int):
         taulavella=self._table
-        self._table=[[None, None, LLIURE] for _ in range(c)]
-        self._n=0
-        for dades in taulavella:
-            if dades[2] == OCUPAT:
-               self.put(dades[0],dades[1])
+        self._table = [[None, None, LLIURE] for _ in range(c)]
+        self._n = 0
+        for casella in taulavella:
+            if casella is not None and casella[2] == OCUPAT:
+                self.put(casella[0], casella[1])
         
 
     def __len__(self):
