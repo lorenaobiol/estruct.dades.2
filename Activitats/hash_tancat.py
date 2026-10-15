@@ -30,14 +30,13 @@ class MyHashMap:
                 if inici==j:
                     break
 
-            if self._table[j][2] == OCUPAT:
-                if self._n > len(self._table) // 2:
-                    self._resize(2 * len(self._table) - 1)
-            
-            self._table[j][0] = key
-            self._table[j][1] = value
-            self._table[j][2] = OCUPAT
-            self._n += 1 
+            if self._table[j][2] != OCUPAT:
+                self._table[j][0] = key
+                self._table[j][1] = value
+                self._table[j][2] = OCUPAT
+                self._n += 1 
+            if self._n > len(self._table) // 2:
+                self._resize(2 * len(self._table) - 1)
 
     def get(self, key: int) -> int:
         pos=self.__find(key)
@@ -48,9 +47,7 @@ class MyHashMap:
     def remove(self, key: int) -> None:
         pos=self.__find(key)
         if pos is not None:
-            self._table[pos][0] = None
-            self._table[pos][1] = None
-            self._table[pos][2] = ESBORRAT
+            self._table[pos] = [None,None,ESBORRAT]
             self._n -= 1 
 
     def _resize(self, c: int):
